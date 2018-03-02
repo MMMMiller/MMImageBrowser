@@ -8,7 +8,7 @@
 
 #import "MMImageItem.h"
 #import <UIKit/UIKit.h>
-#import <YYCategories.h>
+#import <YYCategories/YYCategories.h>
 
 @implementation MMImageItem
 

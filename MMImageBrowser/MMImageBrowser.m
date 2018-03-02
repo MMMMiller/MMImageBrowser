@@ -9,9 +9,9 @@
 #import "MMImageBrowser.h"
 #import <MMMCategory/MMCategory.h>
 #import "CALayer+YYAdd.h"
-#import <YYCategories.h>
+#import <YYCategories/YYCategories.h>
 #import "MMImageItemCell.h"
-#import <YYWebImage.h>
+#import <YYWebImage/YYWebImage.h>
 
 #define kPadding 20
 #define kHiColor [UIColor colorWithHex:0x2dd6b8]

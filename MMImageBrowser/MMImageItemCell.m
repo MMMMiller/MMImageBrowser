@@ -8,9 +8,9 @@
 
 #import "MMImageItemCell.h"
 #import "CALayer+YYAdd.h"
-#import <YYCategories.h>
-#import <UIImageView+YYWebImage.h>
-#import <YYImage.h>
+#import <YYCategories/YYCategories.h>
+#import <YYWebImage/UIImageView+YYWebImage.h>
+#import <YYImage/YYImage.h>
 
 @implementation MMImageItemCell
 - (instancetype)init {
