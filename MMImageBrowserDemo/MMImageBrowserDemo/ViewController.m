@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "MMImageBrowser.h"
+#import "MMImageItem.h"
 #import <Masonry.h>
 
 @interface ViewController () {

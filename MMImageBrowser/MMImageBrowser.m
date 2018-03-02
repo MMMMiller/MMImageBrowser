@@ -12,6 +12,7 @@
 #import <YYCategories/YYCategories.h>
 #import "MMImageItemCell.h"
 #import <YYWebImage/YYWebImage.h>
+#import "MMImageItem.h"
 
 #define kPadding 20
 #define kHiColor [UIColor colorWithHex:0x2dd6b8]

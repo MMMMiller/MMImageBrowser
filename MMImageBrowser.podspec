@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = 'MMImageBrowser'
   s.summary      = 'A ImageBrowser for iOS.'
-  s.version      = '0.0.1.1'
+  s.version      = '0.0.1.2'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.authors      = { 'MMMille' => 'xuemingluan@gmail.com' }
   #s.social_media_url = 'http://blog.MMMille.com'
@@ -12,7 +12,6 @@ Pod::Spec.new do |s|
   
   s.requires_arc = true
   s.source_files = 'MMImageBrowser/**/*.{h,m}'
-  s.public_header_files = 'MMImageBrowser/MMImageBrowser.h'
 
   s.libraries = 'z', 'sqlite3'
   s.frameworks = 'UIKit', 'CoreFoundation', 'CoreText', 'CoreGraphics', 'CoreImage', 'QuartzCore', 'ImageIO', 'AssetsLibrary', 'Accelerate', 'MobileCoreServices', 'SystemConfiguration'

@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MMImageItem.h"
-#import <YYCategories/YYCategories.h>
 
+@class MMImageItem;
 @interface MMImageItemCell : UIScrollView<UIScrollViewDelegate>
 @property (nonatomic, strong) UIView *imageContainerView;
 @property (nonatomic, strong) UIImageView *imageView;

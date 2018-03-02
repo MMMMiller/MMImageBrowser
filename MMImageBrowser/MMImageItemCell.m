@@ -8,6 +8,7 @@
 
 #import "MMImageItemCell.h"
 #import "CALayer+YYAdd.h"
+#import "MMImageItem.h"
 #import <YYCategories/YYCategories.h>
 #import <YYWebImage/UIImageView+YYWebImage.h>
 #import <YYImage/YYImage.h>
