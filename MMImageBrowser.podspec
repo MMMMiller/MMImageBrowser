@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = 'MMImageBrowser'
   s.summary      = 'A ImageBrowser for iOS.'
-  s.version      = '0.0.1.2'
+  s.version      = '0.0.2'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.authors      = { 'MMMille' => 'xuemingluan@gmail.com' }
   #s.social_media_url = 'http://blog.MMMille.com'
@@ -17,7 +17,6 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit', 'CoreFoundation', 'CoreText', 'CoreGraphics', 'CoreImage', 'QuartzCore', 'ImageIO', 'AssetsLibrary', 'Accelerate', 'MobileCoreServices', 'SystemConfiguration'
   s.dependency 'MMMCategory'
   s.dependency 'Masonry'
-  s.dependency 'YYWebImage'
 end
 #pod trunk push MMImageBrowser.podspec --allow-warnings
 #pod repo push MMImageBrowser MMImageBrowser.podspec --allow-warnings --sources='https://github.com/CocoaPods/Specs.git'
