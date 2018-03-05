@@ -10,6 +10,6 @@
 
 @interface UIApplication (MMAdd)
 
-+ (void)openUrlString:(NSString *)UrlString;
++ (void)mm_openUrlString:(NSString *)UrlString;
 
 @end

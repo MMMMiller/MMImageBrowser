@@ -565,7 +565,7 @@ static NSTimeInterval _yy_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef 
     BOOL opaque = NO;
     
     if (!hasBlur && !hasSaturation) {
-        return [self _yy_mergeImageRef:imageRef tintColor:tintColor tintBlendMode:tintBlendMode maskImage:maskImage opaque:opaque];
+        return [self _mm_mergeImageRef:imageRef tintColor:tintColor tintBlendMode:tintBlendMode maskImage:maskImage opaque:opaque];
     }
     
     vImage_Buffer effect = { 0 }, scratch = { 0 };
@@ -681,7 +681,7 @@ static NSTimeInterval _yy_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef 
             free(input->data);
         }
         free(output->data);
-        outputImage = [self _yy_mergeImageRef:effectCGImage tintColor:tintColor tintBlendMode:tintBlendMode maskImage:maskImage opaque:opaque];
+        outputImage = [self _mm_mergeImageRef:effectCGImage tintColor:tintColor tintBlendMode:tintBlendMode maskImage:maskImage opaque:opaque];
         CGImageRelease(effectCGImage);
     } else {
         CGImageRef effectCGImage;
@@ -691,7 +691,7 @@ static NSTimeInterval _yy_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourceRef 
         if (input == &effect) effectImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         effectCGImage = effectImage.CGImage;
-        outputImage = [self _yy_mergeImageRef:effectCGImage tintColor:tintColor tintBlendMode:tintBlendMode maskImage:maskImage opaque:opaque];
+        outputImage = [self _mm_mergeImageRef:effectCGImage tintColor:tintColor tintBlendMode:tintBlendMode maskImage:maskImage opaque:opaque];
     }
     return outputImage;
 }
@@ -702,7 +702,7 @@ static void _yy_cleanupBuffer(void *userData, void *buf_data) {
 }
 
 // Helper function to add tint and mask.
-- (UIImage *)_yy_mergeImageRef:(CGImageRef)effectCGImage
+- (UIImage *)_mm_mergeImageRef:(CGImageRef)effectCGImage
                      tintColor:(UIColor *)tintColor
                  tintBlendMode:(CGBlendMode)tintBlendMode
                      maskImage:(UIImage *)maskImage

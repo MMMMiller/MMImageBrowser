@@ -45,7 +45,7 @@
     }
     
     MMImageBrowser *browser = [[MMImageBrowser alloc] initWithImageItems:items];
-    browser.autoBlurBackground = NO;
+    browser.autoBlurBackground = YES;
     [browser presentFromImageView:_img toContainer:[UIApplication sharedApplication].keyWindow animated:YES completion:nil];
 }
 

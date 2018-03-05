@@ -7,7 +7,7 @@
 //
 
 #import "UIButton+MMAdd.h"
-#import <YYCategories/YYCategories.h>
+#import "UIControl+MMAdd.h"
 
 @implementation UIButton (MMAdd)
 
@@ -25,7 +25,7 @@
     }
     
     if (actionHandler) {
-        [button addBlockForControlEvents:1<<6 block:^(id sender) {
+        [button mm_addBlockForControlEvents:1<<6 block:^(id sender) {
             actionHandler();
         }];
     }

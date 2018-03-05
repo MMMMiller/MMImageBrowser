@@ -8,7 +8,7 @@
 
 #import "MMImageItem.h"
 #import <UIKit/UIKit.h>
-#import <YYCategories/YYCategories.h>
+#import <MMMCategory/MMCategory.h>
 
 @implementation MMImageItem
 
@@ -30,8 +30,8 @@
 
 - (BOOL)shouldClipToTop:(CGSize)imageSize forView:(UIView *)view {
     if (imageSize.width < 1 || imageSize.height < 1) return NO;
-    if (view.width < 1 || view.height < 1) return NO;
-    return imageSize.height / imageSize.width > view.width / view.height;
+    if (view.mm_width < 1 || view.mm_height < 1) return NO;
+    return imageSize.height / imageSize.width > view.mm_width / view.mm_height;
 }
 
 - (id)copyWithZone:(NSZone *)zone {

@@ -10,7 +10,7 @@
 
 @implementation UIColor (MMAdd)
 
-+ (UIColor *)colorWithHex:(NSUInteger)hex {
++ (UIColor *)mm_colorWithHex:(NSUInteger)hex {
     CGFloat red, green, blue, alpha;
     
     red = ((CGFloat)((hex >> 16) & 0xFF)) / ((CGFloat)0xFF);
@@ -21,16 +21,16 @@
     return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
-+ (UIColor *)colorWithHex:(NSUInteger)hex alpha:(CGFloat)alpha {
-    return [[UIColor colorWithHex:hex] colorWithAlphaComponent:alpha];
++ (UIColor *)mm_colorWithHex:(NSUInteger)hex alpha:(CGFloat)alpha {
+    return [[UIColor mm_colorWithHex:hex] colorWithAlphaComponent:alpha];
 }
 
-+ (UIColor *)divideLineColor {
-    return [UIColor colorWithHex:0xb2b2b2];
++ (UIColor *)mm_divideLineColor {
+    return [UIColor mm_colorWithHex:0xb2b2b2];
 }
 
-+ (UIColor *)lightGrayBackgroundColor {
-    return [UIColor colorWithHex:0xf5f5f5];
++ (UIColor *)mm_lightGrayBackgroundColor {
+    return [UIColor mm_colorWithHex:0xf5f5f5];
 }
 
 @end

@@ -10,12 +10,12 @@
 
 @interface UIColor (MMAdd)
 
-+ (UIColor *)colorWithHex:(NSUInteger)hex;
++ (UIColor *)mm_colorWithHex:(NSUInteger)hex;
 
-+ (UIColor *)colorWithHex:(NSUInteger)hex alpha:(CGFloat)alpha;
++ (UIColor *)mm_colorWithHex:(NSUInteger)hex alpha:(CGFloat)alpha;
 
-+ (UIColor *)divideLineColor;
++ (UIColor *)mm_divideLineColor;
 
-+ (UIColor *)lightGrayBackgroundColor;
++ (UIColor *)mm_lightGrayBackgroundColor;
 
 @end

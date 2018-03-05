@@ -10,7 +10,7 @@
 
 @implementation UIApplication (MMAdd)
 
-+ (void)openUrlString:(NSString *)urlString {
++ (void)mm_openUrlString:(NSString *)urlString {
     if (!urlString) {
         return;
     }

@@ -8,8 +8,7 @@
 
 #import "MMImageBrowser.h"
 #import <MMMCategory/MMCategory.h>
-#import "CALayer+YYAdd.h"
-#import <YYCategories/YYCategories.h>
+
 #import "MMImageItemCell.h"
 #import <YYWebImage/YYWebImage.h>
 #import "MMImageItem.h"
@@ -88,7 +87,7 @@
     _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     _scrollView = UIScrollView.new;
-    _scrollView.frame = CGRectMake(-kPadding / 2, 0, self.width + kPadding, self.height);
+    _scrollView.frame = CGRectMake(-kPadding / 2, 0, self.mm_width + kPadding, self.mm_height);
     _scrollView.delegate = self;
     _scrollView.scrollsToTop = NO;
     _scrollView.pagingEnabled = YES;
@@ -102,9 +101,9 @@
     _pager = [[UIPageControl alloc] init];
     _pager.hidesForSinglePage = YES;
     _pager.userInteractionEnabled = NO;
-    _pager.width = self.width - 36;
-    _pager.height = 10;
-    _pager.center = CGPointMake(self.width / 2, self.height - 18);
+    _pager.mm_width = self.mm_width - 36;
+    _pager.mm_height = 10;
+    _pager.mm_center = CGPointMake(self.mm_width / 2, self.mm_height - 18);
     _pager.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     
     [self addSubview:_background];
@@ -135,28 +134,28 @@
     if (page == -1) page = 0;
     _fromItemIndex = page;
     
-    _snapshotImage = [_toContainerView snapshotImageAfterScreenUpdates:NO];
+    _snapshotImage = [_toContainerView mm_snapshotImageAfterScreenUpdates:NO];
     BOOL fromViewHidden = fromView.hidden;
     fromView.hidden = YES;
-    _snapshorImageHideFromView = [_toContainerView snapshotImage];
+    _snapshorImageHideFromView = [_toContainerView mm_snapshotImage];
     fromView.hidden = fromViewHidden;
     
     _background.image = _snapshorImageHideFromView;
     if (_autoBlurBackground) {
-        _blurBackground.image = [_snapshorImageHideFromView imageByBlurDark]; //Same to UIBlurEffectStyleDark
+        _blurBackground.image = [_snapshorImageHideFromView mm_imageByBlurDark]; //Same to UIBlurEffectStyleDark
     } else {
-        _blurBackground.image = [UIImage imageWithColor:[UIColor blackColor]];
+        _blurBackground.image = [UIImage mm_imageWithColor:[UIColor blackColor]];
     }
     
-    self.size = _toContainerView.size;
+    self.mm_size = _toContainerView.mm_size;
     self.blurBackground.alpha = 0;
     self.pager.alpha = 0;
     self.pager.numberOfPages = self.imageItems.count;
     self.pager.currentPage = page;
     [_toContainerView addSubview:self];
     
-    _scrollView.contentSize = CGSizeMake(_scrollView.width * self.imageItems.count, _scrollView.height);
-    [_scrollView scrollRectToVisible:CGRectMake(_scrollView.width * _pager.currentPage, 0, _scrollView.width, _scrollView.height) animated:NO];
+    _scrollView.contentSize = CGSizeMake(_scrollView.mm_width * self.imageItems.count, _scrollView.mm_height);
+    [_scrollView scrollRectToVisible:CGRectMake(_scrollView.mm_width * _pager.currentPage, 0, _scrollView.mm_width, _scrollView.mm_height) animated:NO];
     [self scrollViewDidScroll:_scrollView];
     
     [UIView setAnimationsEnabled:YES];
@@ -181,12 +180,12 @@
     if (item.thumbClippedToTop) {
         CGRect fromFrame = [_fromView convertRect:_fromView.bounds toView:cell];
         CGRect originFrame = cell.imageContainerView.frame;
-        CGFloat scale = fromFrame.size.width / cell.imageContainerView.width;
+        CGFloat scale = fromFrame.size.width / cell.imageContainerView.mm_width;
         
-        cell.imageContainerView.centerX = CGRectGetMidX(fromFrame);
-        cell.imageContainerView.height = fromFrame.size.height / scale;
+        cell.imageContainerView.mm_centerX = CGRectGetMidX(fromFrame);
+        cell.imageContainerView.mm_height = fromFrame.size.height / scale;
         cell.imageContainerView.layer.transformScale = scale;
-        cell.imageContainerView.centerY = CGRectGetMidY(fromFrame);
+        cell.imageContainerView.mm_centerY = CGRectGetMidY(fromFrame);
         
         float oneTime = animated ? 0.25 : 0;
         [UIView animateWithDuration:oneTime delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -289,14 +288,14 @@
     
     if (_fromItemIndex != currentPage) {
         _background.image = _snapshotImage;
-        [_background.layer addFadeAnimationWithDuration:0.25 curve:UIViewAnimationCurveEaseOut];
+        [_background.layer mm_addFadeAnimationWithDuration:0.25 curve:UIViewAnimationCurveEaseOut];
     } else {
         _background.image = _snapshorImageHideFromView;
     }
     
     
     if (isFromImageClipped) {
-        [cell scrollToTopAnimated:NO];
+        [cell mm_scrollToTopAnimated:NO];
     }
     
     [UIView animateWithDuration:animated ? 0.2 : 0 delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseOut animations:^{
@@ -305,11 +304,11 @@
         if (isFromImageClipped) {
             
             CGRect fromFrame = [fromView convertRect:fromView.bounds toView:cell];
-            CGFloat scale = fromFrame.size.width / cell.imageContainerView.width * cell.zoomScale;
-            CGFloat height = fromFrame.size.height / fromFrame.size.width * cell.imageContainerView.width;
-            if (isnan(height)) height = cell.imageContainerView.height;
+            CGFloat scale = fromFrame.size.width / cell.imageContainerView.mm_width * cell.zoomScale;
+            CGFloat height = fromFrame.size.height / fromFrame.size.width * cell.imageContainerView.mm_width;
+            if (isnan(height)) height = cell.imageContainerView.mm_height;
             
-            cell.imageContainerView.height = height;
+            cell.imageContainerView.mm_height = height;
             cell.imageContainerView.center = CGPointMake(CGRectGetMidX(fromFrame), CGRectGetMinY(fromFrame));
             cell.imageContainerView.layer.transformScale = scale;
             
@@ -346,8 +345,8 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self updateCellsForReuse];
     
-    CGFloat floatPage = _scrollView.contentOffset.x / _scrollView.width;
-    NSInteger page = _scrollView.contentOffset.x / _scrollView.width + 0.5;
+    CGFloat floatPage = _scrollView.contentOffset.x / _scrollView.mm_width;
+    NSInteger page = _scrollView.contentOffset.x / _scrollView.mm_width + 0.5;
     
     for (NSInteger i = page - 1; i <= page + 1; i++) { // preload left and right cell
         if (i >= 0 && i < self.imageItems.count) {
@@ -355,7 +354,7 @@
             if (!cell) {
                 MMImageItemCell *cell = [self dequeueReusableCell];
                 cell.page = i;
-                cell.left = (self.width + kPadding) * i + kPadding / 2;
+                cell.mm_x = (self.mm_width + kPadding) * i + kPadding / 2;
                 
                 if (_isPresented) {
                     cell.item = self.imageItems[i];
@@ -400,8 +399,8 @@
 - (void)updateCellsForReuse {
     for (MMImageItemCell *cell in _cells) {
         if (cell.superview) {
-            if (cell.left > _scrollView.contentOffset.x + _scrollView.width * 2||
-                cell.right < _scrollView.contentOffset.x - _scrollView.width) {
+            if (cell.mm_x > _scrollView.contentOffset.x + _scrollView.mm_width * 2||
+                cell.mm_right < _scrollView.contentOffset.x - _scrollView.mm_width) {
                 [cell removeFromSuperview];
                 cell.page = -1;
                 cell.item = nil;
@@ -440,7 +439,7 @@
 }
 
 - (NSInteger)currentPage {
-    NSInteger page = _scrollView.contentOffset.x / _scrollView.width + 0.5;
+    NSInteger page = _scrollView.contentOffset.x / _scrollView.mm_width + 0.5;
     if (page >= _imageItems.count) page = (NSInteger)_imageItems.count - 1;
     if (page < 0) page = 0;
     return page;
@@ -449,24 +448,24 @@
 - (void)showHUD:(NSString *)msg {
     if (!msg.length) return;
     UIFont *font = [UIFont systemFontOfSize:17];
-    CGSize size = [msg sizeForFont:font size:CGSizeMake(200, 200) mode:NSLineBreakByCharWrapping];
+    CGSize size = [msg mm_sizeForFont:font size:CGSizeMake(200, 200) mode:NSLineBreakByCharWrapping];
     UILabel *label = [UILabel new];
-    label.size = CGSizePixelCeil(size);
+    label.mm_size = MMCGSizePixelCeil(size);
     label.font = font;
     label.text = msg;
     label.textColor = [UIColor whiteColor];
     label.numberOfLines = 0;
     
     UIView *hud = [UIView new];
-    hud.size = CGSizeMake(label.width + 20, label.height + 20);
+    hud.mm_size = CGSizeMake(label.mm_width + 20, label.mm_height + 20);
     hud.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.650];
     hud.clipsToBounds = YES;
     hud.layer.cornerRadius = 8;
     
-    label.center = CGPointMake(hud.width / 2, hud.height / 2);
+    label.center = CGPointMake(hud.mm_width / 2, hud.mm_height / 2);
     [hud addSubview:label];
     
-    hud.center = CGPointMake(self.width / 2, self.height / 2);
+    hud.center = CGPointMake(self.mm_width / 2, self.mm_height / 2);
     hud.alpha = 0;
     [self addSubview:hud];
     
@@ -493,8 +492,8 @@
         } else {
             CGPoint touchPoint = [g locationInView:tile.imageView];
             CGFloat newZoomScale = tile.maximumZoomScale;
-            CGFloat xsize = self.width / newZoomScale;
-            CGFloat ysize = self.height / newZoomScale;
+            CGFloat xsize = self.mm_width / newZoomScale;
+            CGFloat ysize = self.mm_height / newZoomScale;
             [tile zoomToRect:CGRectMake(touchPoint.x - xsize/2, touchPoint.y - ysize/2, xsize, ysize) animated:YES];
         }
     }
@@ -521,8 +520,8 @@
         activityViewController.popoverPresentationController.sourceView = self;
     }
     
-    UIViewController *toVC = self.toContainerView.viewController;
-    if (!toVC) toVC = self.viewController;
+    UIViewController *toVC = self.toContainerView.mm_viewController;
+    if (!toVC) toVC = self.mm_viewController;
     [toVC presentViewController:activityViewController animated:YES completion:nil];
 }
 
@@ -539,11 +538,11 @@
             if (_panGestureBeginPoint.x == 0 && _panGestureBeginPoint.y == 0) return;
             CGPoint p = [g locationInView:self];
             CGFloat deltaY = p.y - _panGestureBeginPoint.y;
-            _scrollView.top = deltaY;
+            _scrollView.mm_y = deltaY;
             
             CGFloat alphaDelta = 160;
             CGFloat alpha = (alphaDelta - fabs(deltaY) + 50) / alphaDelta;
-            alpha = YY_CLAMP(alpha, 0, 1);
+            alpha = MM_CLAMP(alpha, 0, 1);
             [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveLinear animations:^{
                 _blurBackground.alpha = alpha;
                 _pager.alpha = alpha;
@@ -564,28 +563,28 @@
                 BOOL moveToTop = (v.y < - 50 || (v.y < 50 && deltaY < 0));
                 CGFloat vy = fabs(v.y);
                 if (vy < 1) vy = 1;
-                CGFloat duration = (moveToTop ? _scrollView.bottom : self.height - _scrollView.top) / vy;
+                CGFloat duration = (moveToTop ? _scrollView.mm_bottom : self.mm_height - _scrollView.mm_y) / vy;
                 duration *= 0.8;
-                duration = YY_CLAMP(duration, 0.05, 0.3);
+                duration = MM_CLAMP(duration, 0.05, 0.3);
                 
                 [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState animations:^{
                     _blurBackground.alpha = 0;
                     _pager.alpha = 0;
                     if (moveToTop) {
-                        _scrollView.bottom = 0;
+                        _scrollView.mm_bottom = 0;
                     } else {
-                        _scrollView.top = self.height;
+                        _scrollView.mm_y = self.mm_height;
                     }
                 } completion:^(BOOL finished) {
                     [self removeFromSuperview];
                 }];
                 
                 _background.image = _snapshotImage;
-                [_background.layer addFadeAnimationWithDuration:0.3 curve:UIViewAnimationCurveEaseInOut];
+                [_background.layer mm_addFadeAnimationWithDuration:0.3 curve:UIViewAnimationCurveEaseInOut];
                 
             } else {
                 [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:v.y / 1000 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
-                    _scrollView.top = 0;
+                    _scrollView.mm_y = 0;
                     _blurBackground.alpha = 1;
                     _pager.alpha = 1;
                 } completion:^(BOOL finished) {
@@ -595,7 +594,7 @@
             
         } break;
         case UIGestureRecognizerStateCancelled : {
-            _scrollView.top = 0;
+            _scrollView.mm_y = 0;
             _blurBackground.alpha = 1;
         }
         default:break;

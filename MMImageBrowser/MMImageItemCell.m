@@ -7,11 +7,12 @@
 //
 
 #import "MMImageItemCell.h"
-#import "CALayer+YYAdd.h"
 #import "MMImageItem.h"
-#import <YYCategories/YYCategories.h>
+#import <MMMCategory/MMCategory.h>
 #import <YYWebImage/UIImageView+YYWebImage.h>
 #import <YYImage/YYImage.h>
+#import "MMKitMacro.h"
+#import "CALayer+MMAdd.h"
 
 @implementation MMImageItemCell
 - (instancetype)init {
@@ -36,7 +37,7 @@
     [_imageContainerView addSubview:_imageView];
     
     _progressLayer = [CAShapeLayer layer];
-    _progressLayer.size = CGSizeMake(40, 40);
+    _progressLayer.mm_size = CGSizeMake(40, 40);
     _progressLayer.cornerRadius = 20;
     _progressLayer.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.500].CGColor;
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(_progressLayer.bounds, 7, 7) cornerRadius:(40 / 2 - 7)];
@@ -54,7 +55,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _progressLayer.center = CGPointMake(self.width / 2, self.height / 2);
+    _progressLayer.mm_center = CGPointMake(self.mm_width / 2, self.mm_height / 2);
 }
 
 - (void)setItem:(MMImageItem *)item {
@@ -67,7 +68,7 @@
     self.maximumZoomScale = 1;
     
     [_imageView yy_cancelCurrentImageRequest];
-    [_imageView.layer removePreviousFadeAnimation];
+    [_imageView.layer mm_removePreviousFadeAnimation];
     
     _progressLayer.hidden = NO;
     [CATransaction begin];
@@ -100,7 +101,7 @@
                 self->_itemDidLoad = YES;
                 
                 [self resizeSubviewSize];
-                [self.imageView.layer addFadeAnimationWithDuration:0.1 curve:UIViewAnimationCurveLinear];
+                [self.imageView.layer mm_addFadeAnimationWithDuration:0.1 curve:UIViewAnimationCurveLinear];
             }
         }
         
@@ -109,26 +110,26 @@
 }
 
 - (void)resizeSubviewSize {
-    _imageContainerView.origin = CGPointZero;
-    _imageContainerView.width = self.width;
+    _imageContainerView.mm_origin = CGPointZero;
+    _imageContainerView.mm_width = self.mm_width;
     
     UIImage *image = _imageView.image;
-    if (image.size.height / image.size.width > self.height / self.width) {
-        _imageContainerView.height = floor(image.size.height / (image.size.width / self.width));
+    if (image.size.height / image.size.width > self.mm_height / self.mm_width) {
+        _imageContainerView.mm_height = floor(image.size.height / (image.size.width / self.mm_width));
     } else {
-        CGFloat height = image.size.height / image.size.width * self.width;
-        if (height < 1 || isnan(height)) height = self.height;
+        CGFloat height = image.size.height / image.size.width * self.mm_width;
+        if (height < 1 || isnan(height)) height = self.mm_height;
         height = floor(height);
-        _imageContainerView.height = height;
-        _imageContainerView.centerY = self.height / 2;
+        _imageContainerView.mm_height = height;
+        _imageContainerView.mm_centerY = self.mm_height / 2;
     }
-    if (_imageContainerView.height > self.height && _imageContainerView.height - self.height <= 1) {
-        _imageContainerView.height = self.height;
+    if (_imageContainerView.mm_height > self.mm_height && _imageContainerView.mm_height - self.mm_height <= 1) {
+        _imageContainerView.mm_height = self.mm_height;
     }
-    self.contentSize = CGSizeMake(self.width, MAX(_imageContainerView.height, self.height));
+    self.contentSize = CGSizeMake(self.mm_width, MAX(_imageContainerView.mm_height, self.mm_height));
     [self scrollRectToVisible:self.bounds animated:NO];
     
-    if (_imageContainerView.height <= self.height) {
+    if (_imageContainerView.mm_height <= self.mm_height) {
         self.alwaysBounceVertical = NO;
     } else {
         self.alwaysBounceVertical = YES;
