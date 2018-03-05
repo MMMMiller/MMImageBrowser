@@ -11,7 +11,6 @@
 #import <MMMCategory/MMCategory.h>
 #import <YYWebImage/UIImageView+YYWebImage.h>
 #import <YYImage/YYImage.h>
-#import "MMKitMacro.h"
 #import "CALayer+MMAdd.h"
 
 @implementation MMImageItemCell

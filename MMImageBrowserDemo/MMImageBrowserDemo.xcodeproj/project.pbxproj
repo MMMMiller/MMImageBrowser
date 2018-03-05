@@ -24,7 +24,6 @@
 		197EFFB136F909468E37D0C8 /* Pods-MMImageBrowserDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMImageBrowserDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MMImageBrowserDemo/Pods-MMImageBrowserDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		9ACF4A91E3AD21055989B21C /* Pods-MMImageBrowserDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMImageBrowserDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MMImageBrowserDemo/Pods-MMImageBrowserDemo.release.xcconfig"; sourceTree = "<group>"; };
 		B5174C587D13E949CD4BB419 /* libPods-MMImageBrowserDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MMImageBrowserDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0999BDF204D37F3002A514A /* MMKitMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMKitMacro.h; sourceTree = "<group>"; };
 		E0DD696D2047D55F0075E85C /* MMImageBrowserDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMImageBrowserDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0DD69702047D55F0075E85C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E0DD69712047D55F0075E85C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -105,7 +104,6 @@
 				E0DD697B2047D55F0075E85C /* LaunchScreen.storyboard */,
 				E0DD697E2047D55F0075E85C /* Info.plist */,
 				E0DD697F2047D55F0075E85C /* main.m */,
-				E0999BDF204D37F3002A514A /* MMKitMacro.h */,
 			);
 			path = MMImageBrowserDemo;
 			sourceTree = "<group>";
