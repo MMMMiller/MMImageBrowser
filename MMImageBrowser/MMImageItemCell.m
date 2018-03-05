@@ -9,8 +9,7 @@
 #import "MMImageItemCell.h"
 #import "MMImageItem.h"
 #import <MMMCategory/MMCategory.h>
-#import <YYWebImage/UIImageView+YYWebImage.h>
-#import <YYImage/YYImage.h>
+#import <YYKit/YYKit.h>
 #import "CALayer+MMAdd.h"
 
 @implementation MMImageItemCell
@@ -66,7 +65,7 @@
     [self setZoomScale:1.0 animated:NO];
     self.maximumZoomScale = 1;
     
-    [_imageView yy_cancelCurrentImageRequest];
+    [_imageView cancelCurrentImageRequest];
     [_imageView.layer mm_removePreviousFadeAnimation];
     
     _progressLayer.hidden = NO;
@@ -82,7 +81,7 @@
     }
     
     @weakify(self);
-    [_imageView yy_setImageWithURL:item.largeImageURL placeholder:item.thumbImage options:kNilOptions progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+    [_imageView setImageWithURL:item.largeImageURL placeholder:item.thumbImage options:kNilOptions progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         @strongify(self);
         if (!self) return;
         CGFloat progress = receivedSize / (float)expectedSize;

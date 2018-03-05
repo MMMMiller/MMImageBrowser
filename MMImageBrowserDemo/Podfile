@@ -3,5 +3,5 @@ platform :ios, '8.0'
 inhibit_all_warnings!
 target 'MMImageBrowserDemo' do
     pod 'MMMCategory'
-    pod 'YYWebImage'
+    pod 'YYKit'
 end

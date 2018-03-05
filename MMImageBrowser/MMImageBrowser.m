@@ -10,7 +10,7 @@
 #import <MMMCategory/MMCategory.h>
 
 #import "MMImageItemCell.h"
-#import <YYWebImage/YYWebImage.h>
+#import <YYKit/YYKit.h>
 #import "MMImageItem.h"
 
 #define kPadding 20
@@ -338,7 +338,7 @@
 
 - (void)cancelAllImageLoad {
     [_cells enumerateObjectsUsingBlock:^(MMImageItemCell *cell, NSUInteger idx, BOOL *stop) {
-        [cell.imageView yy_cancelCurrentImageRequest];
+        [cell.imageView cancelCurrentImageRequest];
     }];
 }
 
@@ -506,7 +506,7 @@
     if (!tile.imageView.image) return;
     
     // try to save original image data if the image contains multi-frame (such as GIF/APNG)
-    id imageItem = [tile.imageView.image yy_imageDataRepresentation];
+    id imageItem = [tile.imageView.image imageDataRepresentation];
     YYImageType type = YYImageDetectType((__bridge CFDataRef)(imageItem));
     if (type != YYImageTypePNG &&
         type != YYImageTypeJPEG &&
