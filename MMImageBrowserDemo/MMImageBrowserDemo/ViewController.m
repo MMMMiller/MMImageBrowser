@@ -31,11 +31,13 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSArray *imgs = @[@"http://upload-images.jianshu.io/upload_images/1426854-b20dc3e4aefd878f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+    NSArray *imgs = @[
+                      @"http://upload-images.jianshu.io/upload_images/1426854-b20dc3e4aefd878f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
                       @"http://upload-images.jianshu.io/upload_images/1426854-ae96c202843dcbce.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
                       @"http://upload-images.jianshu.io/upload_images/1426854-88c1ec49d2f51faf.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
                       @"http://upload-images.jianshu.io/upload_images/1426854-b8661d64f8ec160c.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
-                      @"http://upload-images.jianshu.io/upload_images/1426854-72ff92aeeb638184.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"];
+                      @"http://upload-images.jianshu.io/upload_images/1426854-72ff92aeeb638184.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
+                      ];
     NSMutableArray *items = [NSMutableArray array];
     for (int i =0; i < imgs.count; i++) {
         MMImageItem *item = [MMImageItem new];

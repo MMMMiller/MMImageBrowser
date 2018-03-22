@@ -18,5 +18,5 @@ Pod::Spec.new do |s|
   s.dependency 'MMMCategory'
   s.dependency 'YYKit'
 end
-#pod trunk push MMImageBrowser.podspec --allow-warnings
-#pod repo push MMImageBrowser MMImageBrowser.podspec --allow-warnings --sources='https://github.com/CocoaPods/Specs.git'
+#pod trunk push BTImageBrowser.podspec --allow-warnings
+#pod repo push OpenSdkRepo BTImageBrowser.podspec --allow-warnings --sources='git@git.dev.adnonstop.com:ios/openSdk/OpenSdkRepo.git,https://github.com/CocoaPods/Specs.git'
